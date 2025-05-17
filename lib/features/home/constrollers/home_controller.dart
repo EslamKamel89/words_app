@@ -15,7 +15,9 @@ class HomeController {
   Future<ApiResponseModel<List<RootModel>>> fetch(String search) async {
     final t = prt('fetch - HomeController');
     try {
-      final response = await api.get(EndPoint.roots, queryParameter: {"search": search});
+      final response = await api.get(
+        EndPoint.roots + (search.trim() == '' ? '' : '?search=$search'),
+      );
       pr(response, '$t - response');
 
       final List<RootModel> models =
