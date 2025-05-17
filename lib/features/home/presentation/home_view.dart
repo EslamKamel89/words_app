@@ -18,7 +18,10 @@ class _HomeViewState extends State<HomeView> {
       child: SingleChildScrollView(
         child: Column(
           children: [
-            CustomTextFormField(labelText: "ابحث في القرآن", controller: searchController),
+            CustomTextFormField(
+              labelText: "ابحث في القرآن",
+              controller: searchController,
+            ),
           ],
         ),
       ),

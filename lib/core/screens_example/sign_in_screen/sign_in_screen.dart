@@ -16,10 +16,7 @@ class SignInScreen extends StatelessWidget {
             children: [
               const Text(
                 "Welcome Back!",
-                style: TextStyle(
-                  fontSize: 28,
-                  fontWeight: FontWeight.bold,
-                ),
+                style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
                 textAlign: TextAlign.center,
               ),
               const SizedBox(height: 10),
@@ -73,10 +70,7 @@ class SignInScreen extends StatelessWidget {
                     borderRadius: BorderRadius.circular(10),
                   ),
                 ),
-                child: const Text(
-                  "Sign In",
-                  style: TextStyle(fontSize: 16),
-                ),
+                child: const Text("Sign In", style: TextStyle(fontSize: 16)),
               ),
               const SizedBox(height: 20),
               const Row(
@@ -84,10 +78,7 @@ class SignInScreen extends StatelessWidget {
                   Expanded(child: Divider(thickness: 1)),
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: 10),
-                    child: Text(
-                      "OR",
-                      style: TextStyle(color: Colors.grey),
-                    ),
+                    child: Text("OR", style: TextStyle(color: Colors.grey)),
                   ),
                   Expanded(child: Divider(thickness: 1)),
                 ],

@@ -9,25 +9,29 @@ class SplashScreen extends StatefulWidget {
   State<SplashScreen> createState() => _SplashScreenState();
 }
 
-class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderStateMixin {
+class _SplashScreenState extends State<SplashScreen>
+    with SingleTickerProviderStateMixin {
   late AnimationController _animationController;
   late Animation<double> _animation;
   @override
   void initState() {
     super.initState();
-    _animationController = AnimationController(vsync: this, duration: const Duration(seconds: 3));
+    _animationController = AnimationController(
+      vsync: this,
+      duration: const Duration(seconds: 3),
+    );
     // _animation = CurvedAnimation(parent: _animationController, curve: Curves.easeInOut);
-    _animation = Tween<double>(
-      begin: 0,
-      end: 1,
-    ).animate(CurvedAnimation(parent: _animationController, curve: Curves.easeInOut));
+    _animation = Tween<double>(begin: 0, end: 1).animate(
+      CurvedAnimation(parent: _animationController, curve: Curves.easeInOut),
+    );
     _animationController.forward();
     _animationController.addStatusListener((status) {
       if (status == AnimationStatus.completed) {
         Future.delayed(const Duration(seconds: 1), () {
-          Navigator.of(
-            context,
-          ).pushNamedAndRemoveUntil(AppRoutesNames.uiComponentScreen, (_) => false);
+          Navigator.of(context).pushNamedAndRemoveUntil(
+            AppRoutesNames.uiComponentScreen,
+            (_) => false,
+          );
         });
       }
     });
@@ -58,7 +62,11 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
               opacity: _animation,
               child: const Text(
                 'App Title',
-                style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold, color: Colors.black),
+                style: TextStyle(
+                  fontSize: 28,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black,
+                ),
               ),
             ),
             const SizedBox(height: 10),

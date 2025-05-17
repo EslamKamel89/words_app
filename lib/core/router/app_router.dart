@@ -13,14 +13,20 @@ class AppRouter {
     String? routeName = appMiddleWare.middlleware(routeSettings.name);
     switch (routeName) {
       case AppRoutesNames.splashScreen:
-        return CustomPageRoute(builder: (context) => const SplashScreen(), settings: routeSettings);
+        return CustomPageRoute(
+          builder: (context) => const SplashScreen(),
+          settings: routeSettings,
+        );
       case AppRoutesNames.uiComponentScreen:
         return CustomPageRoute(
           builder: (context) => const UiComponentScreen(),
           settings: routeSettings,
         );
       case AppRoutesNames.homeView:
-        return CustomPageRoute(builder: (context) => const HomeView(), settings: routeSettings);
+        return CustomPageRoute(
+          builder: (context) => const HomeView(),
+          settings: routeSettings,
+        );
 
       default:
         return null;
@@ -29,7 +35,10 @@ class AppRouter {
 }
 
 class CustomPageRoute<T> extends MaterialPageRoute<T> {
-  CustomPageRoute({required super.builder, required RouteSettings super.settings});
+  CustomPageRoute({
+    required super.builder,
+    required RouteSettings super.settings,
+  });
   @override
   Widget buildTransitions(
     BuildContext context,

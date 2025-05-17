@@ -26,7 +26,14 @@ class BadgeWrap extends StatelessWidget {
         borderRadius: BorderRadius.circular(16),
         border: Border.all(color: color),
       ),
-      child: Text(item, style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500, color: color)),
+      child: Text(
+        item,
+        style: TextStyle(
+          fontSize: 14,
+          fontWeight: FontWeight.w500,
+          color: color,
+        ),
+      ),
     );
   }
 
