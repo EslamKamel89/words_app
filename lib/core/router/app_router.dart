@@ -3,6 +3,7 @@ import 'package:words_app/core/router/app_routes_names.dart';
 import 'package:words_app/core/router/middleware.dart';
 import 'package:words_app/core/screens_example/splash_screen/splash_screen.dart';
 import 'package:words_app/core/widgets/ui_components_screen.dart';
+import 'package:words_app/features/home/presentation/home_view.dart';
 
 class AppRouter {
   AppMiddleWare appMiddleWare;
@@ -18,6 +19,8 @@ class AppRouter {
           builder: (context) => const UiComponentScreen(),
           settings: routeSettings,
         );
+      case AppRoutesNames.homeView:
+        return CustomPageRoute(builder: (context) => const HomeView(), settings: routeSettings);
 
       default:
         return null;

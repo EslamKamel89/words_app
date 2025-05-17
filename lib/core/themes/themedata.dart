@@ -1,8 +1,6 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:words_app/core/themes/design_system.dart';
 
 class Clr {
   // Core Colors
@@ -119,15 +117,15 @@ final ThemeData lightTheme = ThemeData(
     filled: true,
     fillColor: Colors.white,
     border: OutlineInputBorder(
-      borderRadius: BorderRadius.all(Radius.circular(DesSys.borderRadiusMd)),
+      borderRadius: BorderRadius.all(Radius.circular(15)),
       borderSide: BorderSide(color: lightClr.primaryColor),
     ),
     enabledBorder: OutlineInputBorder(
-      borderRadius: BorderRadius.all(Radius.circular(DesSys.borderRadiusMd)),
+      borderRadius: BorderRadius.all(Radius.circular(15)),
       borderSide: BorderSide(color: lightClr.primaryColor),
     ),
     focusedBorder: OutlineInputBorder(
-      borderRadius: BorderRadius.all(Radius.circular(DesSys.borderRadiusMd)),
+      borderRadius: BorderRadius.all(Radius.circular(15)),
       borderSide: BorderSide(color: lightClr.primaryColorDark),
     ),
     labelStyle: TextStyle(color: Colors.black54, fontSize: 16),
@@ -236,15 +234,15 @@ final ThemeData darkTheme = ThemeData(
     filled: true,
     fillColor: darkClr.cardColor, // Dark grey background for inputs
     border: OutlineInputBorder(
-      borderRadius: BorderRadius.all(Radius.circular(DesSys.borderRadiusMd)),
+      borderRadius: BorderRadius.all(Radius.circular(15)),
       borderSide: BorderSide(color: darkClr.primaryColor),
     ),
     enabledBorder: OutlineInputBorder(
-      borderRadius: BorderRadius.all(Radius.circular(DesSys.borderRadiusMd)),
+      borderRadius: BorderRadius.all(Radius.circular(15)),
       borderSide: BorderSide(color: darkClr.primaryColor),
     ),
     focusedBorder: OutlineInputBorder(
-      borderRadius: BorderRadius.all(Radius.circular(DesSys.borderRadiusMd)),
+      borderRadius: BorderRadius.all(Radius.circular(15)),
       borderSide: BorderSide(color: darkClr.primaryColorDark),
     ),
     labelStyle: TextStyle(color: Colors.white70, fontSize: 16),

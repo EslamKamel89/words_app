@@ -18,7 +18,7 @@ void main() async {
     EasyLocalization(
       supportedLocales: const [Locale('en'), Locale('ar')],
       path: 'assets/langs', // Path to translation files
-      fallbackLocale: const Locale('en'),
+      fallbackLocale: const Locale('ar'),
       child: const MyApp(),
     ),
   );
@@ -43,8 +43,9 @@ class MyApp extends StatelessWidget {
               navigatorKey: navigatorKey,
               theme: themeCubit.state,
               debugShowCheckedModeBanner: false,
-              initialRoute: AppRoutesNames.splashScreen,
-              locale: context.locale,
+              initialRoute: AppRoutesNames.homeView,
+              // locale: context.locale,
+              locale: Locale('ar'),
               supportedLocales: context.supportedLocales,
               localizationsDelegates: context.localizationDelegates,
               onGenerateRoute: serviceLocator<AppRouter>().onGenerateRoute,
