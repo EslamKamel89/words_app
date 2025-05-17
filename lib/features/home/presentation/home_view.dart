@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:words_app/core/enums/response_type.dart';
-import 'package:words_app/core/heleprs/print_helper.dart';
 import 'package:words_app/core/models/api_response_model.dart';
 import 'package:words_app/core/widgets/inputs.dart';
 import 'package:words_app/core/widgets/main_scaffold.dart';
@@ -59,7 +58,7 @@ class _HomeViewState extends State<HomeView> {
                       );
                       return Wrap(
                         children: List.generate(
-                          prx(words.length, 'words.length - test'),
+                          words.length,
                           (index) => WordBadge(word: words[index]),
                         ),
                       );
@@ -67,7 +66,9 @@ class _HomeViewState extends State<HomeView> {
                     if (state.response == ResponseEnum.loading) {
                       return Center(child: CircularProgressIndicator());
                     }
-                    return Center(child: Column(children: [Text(state.errorMessage ?? 'No data')]));
+                    return Center(
+                      child: Column(children: [Text(state.errorMessage ?? "لا توجد بيانات")]),
+                    );
                   },
                 ),
               ],
