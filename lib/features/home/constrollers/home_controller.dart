@@ -43,7 +43,7 @@ class HomeController {
       pr(response, '$t - response');
       PaginationModel<WordModel> pagination = PaginationModel.fromJson(response);
       final List<WordModel> models =
-          (response as List).map((json) => WordModel.fromJson(json)).toList();
+          (response['data'] as List).map((json) => WordModel.fromJson(json)).toList();
       pagination.data = models;
       return pr(ApiResponseModel(response: ResponseEnum.success, data: pagination), t);
     } catch (e) {

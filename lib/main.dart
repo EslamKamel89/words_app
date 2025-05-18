@@ -9,6 +9,7 @@ import 'package:words_app/core/router/app_routes_names.dart';
 import 'package:words_app/core/service_locator/service_locator.dart';
 import 'package:words_app/core/themes/theme_cubit.dart';
 import 'package:words_app/features/home/cubits/roots_index_cubit.dart';
+import 'package:words_app/features/home/cubits/words_index_cubit.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -39,6 +40,7 @@ class MyApp extends StatelessWidget {
         providers: [
           BlocProvider(create: (_) => ThemeCubit()),
           BlocProvider(create: (_) => RootsIndexCubit()),
+          BlocProvider(create: (_) => WordsIndexCubit()),
         ],
         child: Builder(
           builder: (context) {

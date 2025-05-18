@@ -11,6 +11,7 @@ class VerseEntity {
   int? rootId;
   String? rootName;
   String? rootOriginWord;
+
   VerseEntity({
     this.surahId,
     this.surahName,
