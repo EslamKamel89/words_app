@@ -12,7 +12,7 @@ class RootsIndexCubit extends Cubit<ApiResponseModel<List<RootModel>>> {
   Future search(String query) async {
     final t = prt('fetch - RootsIndexCubit');
     emit(state.copyWith(errorMessage: null, response: ResponseEnum.loading));
-    final ApiResponseModel<List<RootModel>> model = await controller.fetch(query);
+    final ApiResponseModel<List<RootModel>> model = await controller.fetchWordBadge(query);
     pr(model, t);
     emit(model);
   }

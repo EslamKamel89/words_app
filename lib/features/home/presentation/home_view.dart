@@ -66,9 +66,7 @@ class _HomeViewState extends State<HomeView> {
                     if (state.response == ResponseEnum.loading) {
                       return Center(child: CircularProgressIndicator());
                     }
-                    return Center(
-                      child: Column(children: [Text(state.errorMessage ?? "لا توجد بيانات")]),
-                    );
+                    return Center(child: Column(children: [Text("لا توجد بيانات")]));
                   },
                 ),
               ],

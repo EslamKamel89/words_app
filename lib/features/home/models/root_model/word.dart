@@ -1,3 +1,5 @@
+import 'package:words_app/features/home/models/root_model/root_model.dart';
+
 import 'surah.dart';
 import 'verse.dart';
 
@@ -10,6 +12,7 @@ class WordModel {
   String? wordTashkeel;
   SurahModel? surah;
   VerseModel? verse;
+  RootModel? root;
 
   WordModel({
     this.id,
@@ -20,6 +23,7 @@ class WordModel {
     this.wordTashkeel,
     this.surah,
     this.verse,
+    this.root,
   });
 
   @override
@@ -38,6 +42,7 @@ class WordModel {
         json['surah'] == null ? null : SurahModel.fromJson(json['surah'] as Map<String, dynamic>),
     verse:
         json['verse'] == null ? null : VerseModel.fromJson(json['verse'] as Map<String, dynamic>),
+    root: json['root'] == null ? null : RootModel.fromJson(json['root'] as Map<String, dynamic>),
   );
 
   Map<String, dynamic> toJson() => {
