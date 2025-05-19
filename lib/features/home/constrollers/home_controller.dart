@@ -9,12 +9,13 @@ import 'package:words_app/core/models/api_response_model.dart';
 import 'package:words_app/core/models/pagination_model/pagination_model.dart';
 import 'package:words_app/core/service_locator/service_locator.dart';
 import 'package:words_app/features/home/models/root_model/root_model.dart';
+import 'package:words_app/features/home/models/root_model/verse.dart';
 import 'package:words_app/features/home/models/root_model/word.dart';
 
 class HomeController {
   ApiConsumer api = serviceLocator();
   Future<ApiResponseModel<List<RootModel>>> fetchRoots(String search) async {
-    final t = prt('fetch - HomeController');
+    final t = prt('fetchRoots - HomeController');
     try {
       final response = await api.get(
         EndPoint.roots + (search.trim() == '' ? '' : '?search=$search'),
@@ -47,6 +48,27 @@ class HomeController {
           (response['data'] as List).map((json) => WordModel.fromJson(json)).toList();
       pagination.data = models;
       return pr(ApiResponseModel(response: ResponseEnum.success, data: pagination), t);
+    } catch (e) {
+      String errorMessage = e.toString();
+      if (e is DioException) {
+        errorMessage = jsonEncode(e.response?.data ?? 'Unknown error occured');
+      }
+      // showSnackbar('Error', errorMessage, true);
+      return pr(ApiResponseModel(errorMessage: errorMessage, response: ResponseEnum.failed), t);
+    }
+  }
+
+  Future<ApiResponseModel<List<VerseModel>>> fetchVerses(String search) async {
+    final t = prt('fetchVerses - HomeController');
+    try {
+      final response = await api.get(
+        EndPoint.verses + (search.trim() == '' ? '' : '?search=$search'),
+      );
+      pr(response, '$t - response');
+
+      final List<VerseModel> models =
+          (response as List).map((json) => VerseModel.fromJson(json)).toList();
+      return pr(ApiResponseModel(response: ResponseEnum.success, data: models), t);
     } catch (e) {
       String errorMessage = e.toString();
       if (e is DioException) {

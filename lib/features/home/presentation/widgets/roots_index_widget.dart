@@ -8,8 +8,8 @@ import 'package:words_app/features/home/models/root_model/root_model.dart';
 import 'package:words_app/features/home/presentation/widgets/word_badge.dart';
 
 class RootsIndexWidget extends StatelessWidget {
-  const RootsIndexWidget({super.key});
-
+  const RootsIndexWidget({super.key, this.navigate = true});
+  final bool navigate;
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<RootsIndexCubit, ApiResponseModel<List<RootModel>>>(

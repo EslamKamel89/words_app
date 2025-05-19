@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:words_app/core/widgets/main_scaffold.dart';
+import 'package:words_app/core/widgets/sizer.dart';
+import 'package:words_app/features/home/presentation/widgets/roots_index_widget.dart';
 
 class VersesView extends StatefulWidget {
   const VersesView({super.key, required this.wordTashkeel});
@@ -14,10 +16,15 @@ class _VersesViewState extends State<VersesView> {
     return MainScaffold(
       appBarTitle: "نتائج البحث في الآيات",
       resizeToAvoidBottomInset: false,
-      child: SingleChildScrollView(child: Column(children: [
-               
-              ],
-            )),
+      child: Column(
+        children: [
+          Expanded(child: ListView(children: [])),
+          Sizer(),
+          Divider(),
+          Sizer(),
+          RootsIndexWidget(navigate: true),
+        ],
+      ),
     );
   }
 }

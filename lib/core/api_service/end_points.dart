@@ -5,4 +5,5 @@ class EndPoint {
   // static const String imgBaseUrl = "http://words.gaztec.org";
   static const String roots = '$baseUrl/roots';
   static const String words = '$baseUrl/words';
+  static const String verses = '$baseUrl/verses';
 }
