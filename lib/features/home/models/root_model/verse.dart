@@ -1,3 +1,4 @@
+import 'package:words_app/features/home/models/root_model/surah.dart';
 import 'package:words_app/features/home/models/root_model/word.dart';
 
 class VerseModel {
@@ -6,8 +7,9 @@ class VerseModel {
   int? verseNumber;
   String? text;
   List<WordModel>? words;
+  SurahModel? surah;
 
-  VerseModel({this.id, this.surahId, this.verseNumber, this.text, this.words});
+  VerseModel({this.id, this.surahId, this.verseNumber, this.text, this.words, this.surah});
 
   @override
   String toString() {
@@ -23,6 +25,7 @@ class VerseModel {
         (json['words'] as List<dynamic>?)
             ?.map((e) => WordModel.fromJson(e as Map<String, dynamic>))
             .toList(),
+    surah: json['surah'] == null ? null : SurahModel.fromJson(json['surah']),
   );
 
   Map<String, dynamic> toJson() => {
