@@ -100,25 +100,28 @@ class VerseLoadingCard extends StatelessWidget {
               ),
             ],
           ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              // Surah Name + Verse Number Row
-              SizedBox(width: double.infinity),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  RoundedContainer(width: 50, height: 10),
-                  const SizedBox(width: 8),
-                  RoundedContainer(width: 10, height: 10),
-                ],
-              ).animate().fadeIn(duration: 500.ms).slideX(begin: -0.2),
+          alignment: Alignment.centerRight,
+          child: RoundedContainer(width: 100, height: 12),
 
-              const SizedBox(height: 12),
+          // child: Column(
+          //   crossAxisAlignment: CrossAxisAlignment.start,
+          //   children: [
+          //     // Surah Name + Verse Number Row
+          //     SizedBox(width: double.infinity),
+          //     Row(
+          //       mainAxisAlignment: MainAxisAlignment.start,
+          //       children: [
+          //         RoundedContainer(width: 50, height: 10),
+          //         const SizedBox(width: 8),
+          //         RoundedContainer(width: 10, height: 10),
+          //       ],
+          //     ).animate().fadeIn(duration: 500.ms).slideX(begin: -0.2),
 
-              RoundedContainer(width: double.infinity, height: 100),
-            ],
-          ),
+          //     const SizedBox(height: 12),
+
+          //     RoundedContainer(width: double.infinity, height: 100),
+          //   ],
+          // ),
         );
       }),
     );

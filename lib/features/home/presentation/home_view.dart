@@ -16,7 +16,6 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> {
-  final searchController = TextEditingController();
   late final RootsIndexCubit rootsController;
   late final WordsIndexCubit wordsController;
   @override
@@ -27,9 +26,9 @@ class _HomeViewState extends State<HomeView> {
     rootsController.search('');
     wordsController.search('');
 
-    searchController.addListener(() {
-      rootsController.search(searchController.text);
-      wordsController.search(searchController.text);
+    rootsController.searchController.addListener(() {
+      rootsController.search(rootsController.searchController.text);
+      wordsController.search(rootsController.searchController.text);
     });
 
     super.initState();
@@ -37,7 +36,7 @@ class _HomeViewState extends State<HomeView> {
 
   @override
   void dispose() {
-    searchController.dispose();
+    // rootsController.searchController.dispose();
     super.dispose();
   }
 
@@ -51,7 +50,10 @@ class _HomeViewState extends State<HomeView> {
           builder: (context) {
             return Column(
               children: [
-                CustomTextFormField(labelText: "ابحث في القرآن", controller: searchController),
+                CustomTextFormField(
+                  labelText: "ابحث في القرآن",
+                  controller: rootsController.searchController,
+                ),
                 Sizer(),
                 WordsIndexWidget(),
                 Sizer(),

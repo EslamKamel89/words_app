@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:words_app/core/enums/response_type.dart';
 import 'package:words_app/core/heleprs/print_helper.dart';
@@ -10,6 +11,7 @@ class RootsIndexCubit extends Cubit<ApiResponseModel<List<RootModel>>> {
   final HomeController controller = serviceLocator<HomeController>();
   RootsIndexCubit() : super(ApiResponseModel(response: ResponseEnum.initial, data: []));
   String searchQuery = '';
+  final searchController = TextEditingController();
   Future search(String query) async {
     final t = prt('search - RootsIndexCubit');
     searchQuery = query;

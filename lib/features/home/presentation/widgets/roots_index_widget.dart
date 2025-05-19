@@ -23,7 +23,8 @@ class RootsIndexWidget extends StatelessWidget {
         if (state.response == ResponseEnum.loading) {
           return Center(child: CircularProgressIndicator());
         }
-        return Center(child: Column(children: [Text("لا توجد بيانات")]));
+        // return Center(child: Column(children: [Text("لا توجد بيانات")]));
+        return SizedBox();
       },
     );
   }
