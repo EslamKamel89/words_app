@@ -6,7 +6,7 @@ import 'package:words_app/features/home/cubits/roots_index_cubit.dart';
 import 'package:words_app/features/home/entities/word_entity.dart';
 
 class WordBadge extends StatefulWidget {
-  const WordBadge({super.key, required this.word, this.navigate = true});
+  const WordBadge({super.key, required this.word, this.navigate = false});
   final WordEntity word;
   final bool navigate;
   @override

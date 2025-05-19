@@ -8,7 +8,7 @@ import 'package:words_app/features/home/models/root_model/root_model.dart';
 import 'package:words_app/features/home/presentation/widgets/word_badge.dart';
 
 class RootsIndexWidget extends StatelessWidget {
-  const RootsIndexWidget({super.key, this.navigate = true});
+  const RootsIndexWidget({super.key, this.navigate = false});
   final bool navigate;
   @override
   Widget build(BuildContext context) {
@@ -16,9 +16,7 @@ class RootsIndexWidget extends StatelessWidget {
       builder: (context, state) {
         if (state.data?.isNotEmpty == true) {
           final List<WordEntity> words = WordEntity.transformRootsToWordsEntity(state.data ?? []);
-          return Wrap(
-            children: List.generate(words.length, (index) => WordBadge(word: words[index])),
-          );
+          return Wrap(children: List.generate(words.length, (index) => WordBadge(word: words[index], navigate: false)));
         }
         if (state.response == ResponseEnum.loading) {
           return Center(child: CircularProgressIndicator());
