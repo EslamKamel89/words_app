@@ -4,6 +4,7 @@ import 'package:words_app/core/router/middleware.dart';
 import 'package:words_app/core/screens_example/splash_screen/splash_screen.dart';
 import 'package:words_app/core/widgets/ui_components_screen.dart';
 import 'package:words_app/features/home/presentation/home_view.dart';
+import 'package:words_app/features/home/presentation/verses_view.dart';
 
 class AppRouter {
   AppMiddleWare appMiddleWare;
@@ -13,18 +14,18 @@ class AppRouter {
     String? routeName = appMiddleWare.middlleware(routeSettings.name);
     switch (routeName) {
       case AppRoutesNames.splashScreen:
-        return CustomPageRoute(
-          builder: (context) => const SplashScreen(),
-          settings: routeSettings,
-        );
+        return CustomPageRoute(builder: (context) => const SplashScreen(), settings: routeSettings);
       case AppRoutesNames.uiComponentScreen:
         return CustomPageRoute(
           builder: (context) => const UiComponentScreen(),
           settings: routeSettings,
         );
       case AppRoutesNames.homeView:
+        return CustomPageRoute(builder: (context) => const HomeView(), settings: routeSettings);
+      case AppRoutesNames.versesView:
         return CustomPageRoute(
-          builder: (context) => const HomeView(),
+          builder:
+              (context) => VersesView(wordTashkeel: (args as Map<String, dynamic>)['wordTashkeel']),
           settings: routeSettings,
         );
 
@@ -35,10 +36,7 @@ class AppRouter {
 }
 
 class CustomPageRoute<T> extends MaterialPageRoute<T> {
-  CustomPageRoute({
-    required super.builder,
-    required RouteSettings super.settings,
-  });
+  CustomPageRoute({required super.builder, required RouteSettings super.settings});
   @override
   Widget buildTransitions(
     BuildContext context,
