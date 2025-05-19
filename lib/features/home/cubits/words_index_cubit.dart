@@ -43,6 +43,8 @@ class WordsIndexCubit extends Cubit<ApiResponseModel<PaginationModel<WordModel>>
         searchQuery,
         nextPage,
       );
+      hasMorePages = model.data?.currentPage != model.data?.lastPage;
+      nextPage = (model.data?.currentPage ?? 0) + 1;
       pr(model, t);
       emit(model);
     }
