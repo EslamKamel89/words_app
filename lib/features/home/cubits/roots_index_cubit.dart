@@ -11,7 +11,7 @@ class RootsIndexCubit extends Cubit<ApiResponseModel<List<RootModel>>> {
   final HomeController controller = serviceLocator<HomeController>();
   RootsIndexCubit() : super(ApiResponseModel(response: ResponseEnum.initial, data: []));
   String searchQuery = '';
-  final searchController = TextEditingController();
+  final searchInput = TextEditingController();
   Future search(String query) async {
     final t = prt('search - RootsIndexCubit');
     searchQuery = query;

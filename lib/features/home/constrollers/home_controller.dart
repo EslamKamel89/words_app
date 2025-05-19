@@ -34,11 +34,12 @@ class HomeController {
     }
   }
 
-  Future<ApiResponseModel<PaginationModel<WordModel>>> fetchWords(String search) async {
+  Future<ApiResponseModel<PaginationModel<WordModel>>> fetchWords(String search, int page) async {
     final t = prt('fetchWords - HomeController');
     try {
       final response = await api.get(
         EndPoint.words + (search.trim() == '' ? '' : '?search=$search'),
+        queryParameter: {'page': page},
       );
       pr(response, '$t - response');
       PaginationModel<WordModel> pagination = PaginationModel.fromJson(response);

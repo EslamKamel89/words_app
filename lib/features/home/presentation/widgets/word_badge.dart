@@ -26,7 +26,7 @@ class _WordBadgeState extends State<WordBadge> {
     return InkWell(
       onTap: () async {
         FocusScope.of(context).unfocus();
-        rootsController.searchController.text = widget.word.wordTashkeel ?? '';
+        rootsController.searchInput.text = widget.word.wordTashkeel ?? '';
         //   await Future.delayed(500.ms);
         //   showDialog(
         //     context: context,

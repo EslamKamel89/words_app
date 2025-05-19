@@ -5,6 +5,7 @@ import 'package:words_app/core/widgets/main_scaffold.dart';
 import 'package:words_app/core/widgets/sizer.dart';
 import 'package:words_app/features/home/cubits/roots_index_cubit.dart';
 import 'package:words_app/features/home/cubits/words_index_cubit.dart';
+import 'package:words_app/features/home/presentation/widgets/load_more_btn.dart';
 import 'package:words_app/features/home/presentation/widgets/roots_index_widget.dart';
 import 'package:words_app/features/home/presentation/widgets/words_index_widget.dart';
 
@@ -26,9 +27,9 @@ class _HomeViewState extends State<HomeView> {
     rootsController.search('');
     wordsController.search('');
 
-    rootsController.searchController.addListener(() {
-      rootsController.search(rootsController.searchController.text);
-      wordsController.search(rootsController.searchController.text);
+    rootsController.searchInput.addListener(() {
+      rootsController.search(rootsController.searchInput.text);
+      wordsController.search(rootsController.searchInput.text);
     });
 
     super.initState();
@@ -52,10 +53,13 @@ class _HomeViewState extends State<HomeView> {
               children: [
                 CustomTextFormField(
                   labelText: "ابحث في القرآن",
-                  controller: rootsController.searchController,
+                  controller: rootsController.searchInput,
                 ),
                 Sizer(),
                 WordsIndexWidget(),
+                LoadMoreBtn(),
+                Sizer(),
+                Divider(),
                 Sizer(),
                 RootsIndexWidget(),
               ],
