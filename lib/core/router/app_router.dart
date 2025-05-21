@@ -24,8 +24,7 @@ class AppRouter {
         return CustomPageRoute(builder: (context) => const HomeView(), settings: routeSettings);
       case AppRoutesNames.versesView:
         return CustomPageRoute(
-          builder:
-              (context) => VersesView(wordTashkeel: (args as Map<String, dynamic>)['wordTashkeel']),
+          builder: (context) => VersesView(rootId: (args as Map<String, dynamic>)['rootId']),
           settings: routeSettings,
         );
 

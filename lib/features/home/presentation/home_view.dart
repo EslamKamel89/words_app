@@ -5,7 +5,6 @@ import 'package:words_app/core/widgets/main_scaffold.dart';
 import 'package:words_app/core/widgets/sizer.dart';
 import 'package:words_app/features/home/cubits/roots_index_cubit.dart';
 import 'package:words_app/features/home/cubits/words_index_cubit.dart';
-import 'package:words_app/features/home/presentation/widgets/load_more_btn.dart';
 import 'package:words_app/features/home/presentation/widgets/roots_index_widget.dart';
 import 'package:words_app/features/home/presentation/widgets/words_index_widget.dart';
 
@@ -57,7 +56,6 @@ class _HomeViewState extends State<HomeView> {
                 ),
                 Sizer(),
                 WordsIndexWidget(),
-                LoadMoreBtn(),
                 Sizer(),
                 Divider(),
                 Sizer(),

@@ -35,6 +35,25 @@ class HomeController {
     }
   }
 
+  Future<ApiResponseModel<List<RootModel>>> fetchAllRoots() async {
+    final t = prt('fetchRoots - HomeController');
+    try {
+      final response = await api.get(EndPoint.allroots);
+      pr(response, '$t - response');
+
+      final List<RootModel> models =
+          (response as List).map((json) => RootModel.fromJson(json)).toList();
+      return pr(ApiResponseModel(response: ResponseEnum.success, data: models), t);
+    } catch (e) {
+      String errorMessage = e.toString();
+      if (e is DioException) {
+        errorMessage = jsonEncode(e.response?.data ?? 'Unknown error occured');
+      }
+      // showSnackbar('Error', errorMessage, true);
+      return pr(ApiResponseModel(errorMessage: errorMessage, response: ResponseEnum.failed), t);
+    }
+  }
+
   Future<ApiResponseModel<PaginationModel<WordModel>>> fetchWords(String search, int page) async {
     final t = prt('fetchWords - HomeController');
     try {
@@ -58,12 +77,10 @@ class HomeController {
     }
   }
 
-  Future<ApiResponseModel<List<VerseModel>>> fetchVerses(String search) async {
+  Future<ApiResponseModel<List<VerseModel>>> fetchVerses(int rootId) async {
     final t = prt('fetchVerses - HomeController');
     try {
-      final response = await api.get(
-        EndPoint.verses + (search.trim() == '' ? '' : '?search=$search'),
-      );
+      final response = await api.get(EndPoint.verses, queryParameter: {'rootId': rootId});
       pr(response, '$t - response');
 
       final List<VerseModel> models =

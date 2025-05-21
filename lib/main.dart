@@ -8,6 +8,7 @@ import 'package:words_app/core/router/app_router.dart';
 import 'package:words_app/core/router/app_routes_names.dart';
 import 'package:words_app/core/service_locator/service_locator.dart';
 import 'package:words_app/core/themes/theme_cubit.dart';
+import 'package:words_app/features/home/cubits/all_roots_cubit.dart';
 import 'package:words_app/features/home/cubits/roots_index_cubit.dart';
 import 'package:words_app/features/home/cubits/verses_index_cubit.dart';
 import 'package:words_app/features/home/cubits/words_index_cubit.dart';
@@ -43,6 +44,7 @@ class MyApp extends StatelessWidget {
           BlocProvider(create: (_) => RootsIndexCubit()),
           BlocProvider(create: (_) => WordsIndexCubit()),
           BlocProvider(create: (_) => VersesIndexCubit()),
+          BlocProvider(create: (_) => AllRootsCubit()),
         ],
         child: Builder(
           builder: (context) {

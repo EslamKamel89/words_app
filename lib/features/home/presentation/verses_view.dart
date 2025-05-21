@@ -11,8 +11,8 @@ import 'package:words_app/features/home/presentation/widgets/roots_index_widget.
 import 'package:words_app/features/home/presentation/widgets/verse_card.dart';
 
 class VersesView extends StatefulWidget {
-  const VersesView({super.key, required this.wordTashkeel});
-  final String wordTashkeel;
+  const VersesView({super.key, required this.rootId});
+  final int rootId;
   @override
   State<VersesView> createState() => _VersesViewState();
 }
@@ -22,7 +22,7 @@ class _VersesViewState extends State<VersesView> {
   @override
   void initState() {
     controller = context.read<VersesIndexCubit>();
-    controller.search(widget.wordTashkeel);
+    controller.search(widget.rootId);
     super.initState();
   }
 
