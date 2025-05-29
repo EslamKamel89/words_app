@@ -59,7 +59,7 @@ class _HomeViewState extends State<HomeView> {
                 Sizer(),
                 Divider(),
                 Sizer(),
-                RootsIndexWidget(),
+                RootsIndexWidget(clickable: true),
               ],
             );
           },

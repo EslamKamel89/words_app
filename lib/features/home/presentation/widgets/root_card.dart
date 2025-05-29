@@ -1,20 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:words_app/core/heleprs/print_helper.dart';
 import 'package:words_app/core/router/app_routes_names.dart';
+import 'package:words_app/features/home/cubits/roots_index_cubit.dart';
 import 'package:words_app/features/home/models/root_model/root_model.dart';
 
-class RootCard extends StatelessWidget {
+class RootCard extends StatefulWidget {
   final RootModel rootModel;
 
   const RootCard({super.key, required this.rootModel});
 
   @override
+  State<RootCard> createState() => _RootCardState();
+}
+
+class _RootCardState extends State<RootCard> {
+  @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
+        pr(widget.rootModel, 'root model');
+        context.read<RootsIndexCubit>().searchInput.text = widget.rootModel.name ?? '';
         Navigator.of(
           context,
-        ).pushNamed(AppRoutesNames.versesView, arguments: {'rootId': rootModel.id});
+        ).pushNamed(AppRoutesNames.versesView, arguments: {'rootId': widget.rootModel.id});
       },
       child: Container(
         margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
@@ -36,7 +46,7 @@ class RootCard extends StatelessWidget {
           children: [
             Text(
               // "الكلمة بالتشكيل: ${wordModel.wordTashkeel ?? ''}",
-              " ${rootModel.name ?? ''}",
+              " ${widget.rootModel.name ?? ''}",
               textAlign: TextAlign.right,
               style: TextStyle(
                 // fontFamily: 'NotoSansArabic',

@@ -6,9 +6,9 @@ import 'package:words_app/features/home/cubits/roots_index_cubit.dart';
 import 'package:words_app/features/home/entities/word_entity.dart';
 
 class WordBadge extends StatefulWidget {
-  const WordBadge({super.key, required this.word, this.navigate = false});
+  const WordBadge({super.key, required this.word, this.clickable = false});
   final WordEntity word;
-  final bool navigate;
+  final bool clickable;
   @override
   State<WordBadge> createState() => _WordBadgeState();
 }
@@ -24,13 +24,11 @@ class _WordBadgeState extends State<WordBadge> {
   @override
   Widget build(BuildContext context) {
     Color color = _getRandomColor(context);
-    return widget.word.wordTashkeel != null
+    return widget.word.wordTashkeel != null && widget.word.wordTashkeel!.isNotEmpty
         ? InkWell(
           onTap: () async {
+            if (!widget.clickable) return;
             FocusScope.of(context).unfocus();
-            if (widget.navigate) {
-              Navigator.of(context).pop();
-            }
             rootsController.searchInput.text = widget.word.wordTashkeel ?? '';
             //   await Future.delayed(500.ms);
             //   showDialog(
