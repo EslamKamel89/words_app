@@ -63,7 +63,7 @@ class VerseCard extends StatelessWidget {
             maxLines: 100,
             overflow: TextOverflow.ellipsis,
             style: TextStyle(
-              // fontFamily: 'NotoSansArabic',
+              fontFamily: 'uthmanic2',
               fontSize: 20,
               height: 2.0,
               color: Colors.brown.shade900,
