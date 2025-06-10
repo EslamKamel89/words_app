@@ -60,7 +60,7 @@ class VerseCard extends StatelessWidget {
             verse.verseText ?? '',
             textAlign: TextAlign.right,
             textDirection: TextDirection.rtl,
-            maxLines: 5,
+            maxLines: 100,
             overflow: TextOverflow.ellipsis,
             style: TextStyle(
               // fontFamily: 'NotoSansArabic',
