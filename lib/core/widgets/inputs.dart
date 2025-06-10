@@ -155,9 +155,10 @@ class CustomTextFormField extends StatefulWidget {
   State<CustomTextFormField> createState() => _CustomTextFormFieldState();
 }
 
+FocusNode focusNode = FocusNode();
+
 class _CustomTextFormFieldState extends State<CustomTextFormField> {
   bool showPassword = false;
-  FocusNode focusNode = FocusNode();
   bool canRequestFocus = false;
   @override
   void initState() {
@@ -168,7 +169,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
   @override
   Widget build(BuildContext context) {
     return TextField(
-      // focusNode: focusNode,
+      focusNode: focusNode,
       autofocus: false,
       onTap: () {},
       // canRequestFocus: canRequestFocus,

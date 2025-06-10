@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:words_app/features/home/entities/verse_entity.dart';
 
 class VerseCard extends StatelessWidget {
@@ -62,8 +63,8 @@ class VerseCard extends StatelessWidget {
             textDirection: TextDirection.rtl,
             maxLines: 100,
             // overflow: TextOverflow.ellipsis,
-            style: TextStyle(
-              fontFamily: 'uthmanic2',
+            style: GoogleFonts.amiri(
+              // fontFamily: 'uthmanic2',
               fontSize: 20,
               height: 2.0,
               color: Colors.brown.shade900,

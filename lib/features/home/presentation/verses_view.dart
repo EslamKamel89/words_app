@@ -7,6 +7,7 @@ import 'package:words_app/core/heleprs/hide_keyboard.dart';
 import 'package:words_app/core/heleprs/unique_object_in_array.dart';
 import 'package:words_app/core/models/api_response_model.dart';
 import 'package:words_app/core/models/pagination_model/pagination_model.dart';
+import 'package:words_app/core/widgets/inputs.dart';
 import 'package:words_app/core/widgets/main_scaffold.dart';
 import 'package:words_app/core/widgets/sizer.dart';
 import 'package:words_app/features/home/cubits/roots_index_cubit.dart';
@@ -42,12 +43,14 @@ class _VersesViewState extends State<VersesView> {
     super.initState();
   }
 
+  List<WordEntity>? words;
   @override
   Widget build(BuildContext context) {
     return PopScope(
       onPopInvokedWithResult: (a, b) {
         context.read<RootsIndexCubit>().searchInput.text = '';
-        hideKeyboard();
+        // hideKeyboard();
+        focusNode.unfocus();
       },
       child: MainScaffold(
         appBarTitle: "نتائج البحث في الآيات",
@@ -79,26 +82,25 @@ class _VersesViewState extends State<VersesView> {
                         return BlocBuilder<RootsIndexCubit, ApiResponseModel<List<RootModel>>>(
                           builder: (context, state) {
                             if (state.data?.isNotEmpty == true) {
-                              final List<WordEntity> words = WordEntity.transformRootsToWordsEntity(
-                                state.data ?? [],
-                              );
+                              words =
+                                  words ?? WordEntity.transformRootsToWordsEntity(state.data ?? []);
                               return Padding(
                                 padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
                                 child: SingleChildScrollView(
                                   child: Wrap(
                                     children: List.generate(
-                                      words.length,
+                                      words!.length,
                                       (index) => InkWell(
                                         onTap: () {
-                                          if (words[index].wordTashkeel == null) return;
+                                          if (words![index].wordTashkeel == null) return;
                                           rootsController.searchInput.text =
-                                              words[index].wordTashkeel!;
+                                              words![index].wordTashkeel!;
                                           setState(() {
-                                            selectedWord = words[index];
+                                            selectedWord = words![index];
                                           });
                                           Navigator.of(context).pop();
                                         },
-                                        child: CustomBadge(word: words[index]),
+                                        child: CustomBadge(word: words![index]),
                                       ),
                                     ),
                                   ),

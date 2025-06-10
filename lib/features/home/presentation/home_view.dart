@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:words_app/core/enums/response_type.dart';
 import 'package:words_app/core/extensions/context-extensions.dart';
-import 'package:words_app/core/heleprs/hide_keyboard.dart';
 import 'package:words_app/core/widgets/inputs.dart';
 import 'package:words_app/core/widgets/main_scaffold.dart';
 import 'package:words_app/core/widgets/sizer.dart';
@@ -112,7 +111,9 @@ class _HomeViewActionButtonsState extends State<HomeViewActionButtons> {
             Sizer(),
             CustomActionButton(
               onTap: () async {
-                hideKeyboard();
+                // FocusScope.of(context).unfocus();
+                focusNode.unfocus();
+                await Future.delayed(Duration(milliseconds: 10));
                 await showModalBottomSheet(
                   context: context,
                   builder: (a) {
@@ -153,7 +154,8 @@ class _HomeViewActionButtonsState extends State<HomeViewActionButtons> {
                     );
                   },
                 );
-                hideKeyboard();
+                focusNode.unfocus();
+                // hideKeyboard();
               },
               color: context.primaryColor,
               icon: MdiIcons.magnify,
