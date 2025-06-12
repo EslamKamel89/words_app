@@ -39,10 +39,17 @@ class WordModel {
     word: json['word'] as String?,
     wordTashkeel: json['word_tashkeel'] as String?,
     surah:
-        json['surah'] == null ? null : SurahModel.fromJson(json['surah'] as Map<String, dynamic>),
+        json['surah'] == null
+            ? null
+            : SurahModel.fromJson(json['surah'] as Map<String, dynamic>),
     verse:
-        json['verse'] == null ? null : VerseModel.fromJson(json['verse'] as Map<String, dynamic>),
-    root: json['root'] == null ? null : RootModel.fromJson(json['root'] as Map<String, dynamic>),
+        json['verse'] == null
+            ? null
+            : VerseModel.fromJson(json['verse'] as Map<String, dynamic>),
+    root:
+        json['root'] == null
+            ? null
+            : RootModel.fromJson(json['root'] as Map<String, dynamic>),
   );
 
   Map<String, dynamic> toJson() => {

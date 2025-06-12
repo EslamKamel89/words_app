@@ -35,7 +35,10 @@ class _WordsIndexWidgetState extends State<WordsIndexWidget> {
     if (wordsController.searchQuery.trim().isEmpty) {
       return AllRootsWidget();
     }
-    return BlocBuilder<WordsIndexCubit, ApiResponseModel<PaginationModel<WordModel>>>(
+    return BlocBuilder<
+      WordsIndexCubit,
+      ApiResponseModel<PaginationModel<WordModel>>
+    >(
       builder: (context, state) {
         if (state.data?.data != null && state.data!.data!.isNotEmpty == true) {
           final List<VerseEntity> verses = getUniqueListByProperty(
@@ -44,7 +47,10 @@ class _WordsIndexWidgetState extends State<WordsIndexWidget> {
           );
           return Column(
             children: [
-              ...List.generate(verses.length, (index) => VerseCard(verse: verses[index])),
+              ...List.generate(
+                verses.length,
+                (index) => VerseCard(verse: verses[index]),
+              ),
               LoadMoreBtn(),
             ],
           );

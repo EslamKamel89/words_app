@@ -79,20 +79,31 @@ class _VersesViewState extends State<VersesView> {
                     await showModalBottomSheet(
                       context: context,
                       builder: (a) {
-                        return BlocBuilder<RootsIndexCubit, ApiResponseModel<List<RootModel>>>(
+                        return BlocBuilder<
+                          RootsIndexCubit,
+                          ApiResponseModel<List<RootModel>>
+                        >(
                           builder: (context, state) {
                             if (state.data?.isNotEmpty == true) {
                               words =
-                                  words ?? WordEntity.transformRootsToWordsEntity(state.data ?? []);
+                                  words ??
+                                  WordEntity.transformRootsToWordsEntity(
+                                    state.data ?? [],
+                                  );
                               return Padding(
-                                padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                                padding: EdgeInsets.symmetric(
+                                  horizontal: 10,
+                                  vertical: 10,
+                                ),
                                 child: SingleChildScrollView(
                                   child: Wrap(
                                     children: List.generate(
                                       words!.length,
                                       (index) => InkWell(
                                         onTap: () {
-                                          if (words![index].wordTashkeel == null) return;
+                                          if (words![index].wordTashkeel ==
+                                              null)
+                                            return;
                                           rootsController.searchInput.text =
                                               words![index].wordTashkeel!;
                                           setState(() {
@@ -150,7 +161,10 @@ class _VersesViewState extends State<VersesView> {
               //     ],
               //   ),
               if (selectedWord == null)
-                BlocBuilder<VersesIndexCubit, ApiResponseModel<List<VerseModel>>>(
+                BlocBuilder<
+                  VersesIndexCubit,
+                  ApiResponseModel<List<VerseModel>>
+                >(
                   builder: (context, state) {
                     if (state.response == ResponseEnum.loading) {
                       return Container(
@@ -170,13 +184,16 @@ class _VersesViewState extends State<VersesView> {
                       state.data ?? [],
                       (verse) => verse.id,
                     );
-                    verses = getUniqueListByProperty(state.data ?? [], (verse) => verse.text);
-
+                    verses = getUniqueListByProperty(
+                      state.data ?? [],
+                      (verse) => verse.text,
+                    );
                     return Column(
                       children: List.generate(verses.length, (index) {
                         final verse = verses[index];
                         return VerseCard(
                           verse: VerseEntity(
+                            surahId: verse.surahId,
                             surahName: verse.surah?.name,
                             verseNumber: verse.verseNumber,
                             verseText: verse.text,
@@ -187,9 +204,13 @@ class _VersesViewState extends State<VersesView> {
                   },
                 ),
               if (selectedWord != null)
-                BlocBuilder<WordsIndexCubit, ApiResponseModel<PaginationModel<WordModel>>>(
+                BlocBuilder<
+                  WordsIndexCubit,
+                  ApiResponseModel<PaginationModel<WordModel>>
+                >(
                   builder: (context, state) {
-                    if (state.data?.data != null && state.data!.data!.isNotEmpty == true) {
+                    if (state.data?.data != null &&
+                        state.data!.data!.isNotEmpty == true) {
                       final List<VerseEntity> verses = getUniqueListByProperty(
                         VerseEntity.transformWordsToVerses(state.data!.data!),
                         (p) => p.verseId,
@@ -207,7 +228,9 @@ class _VersesViewState extends State<VersesView> {
                     if (state.response == ResponseEnum.loading) {
                       return LoadingCard();
                     }
-                    return Center(child: Column(children: [Text("لا توجد بيانات")]));
+                    return Center(
+                      child: Column(children: [Text("لا توجد بيانات")]),
+                    );
                   },
                 ),
               Sizer(),

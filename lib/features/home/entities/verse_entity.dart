@@ -24,10 +24,11 @@ class VerseEntity {
     this.rootOriginWord,
   });
   static VerseEntity transformWordToVerse(WordModel word) {
+    // pr(word, 'test word model');
     return VerseEntity(
       surahId: word.surah?.id,
       surahName: word.surah?.name,
-      verseId: word.verse?.id,
+      verseId: word.verseId,
       verseNumber: word.verse?.verseNumber,
       verseText: word.verse?.text,
       wordId: word.id,

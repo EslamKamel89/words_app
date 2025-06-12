@@ -8,12 +8,14 @@ import 'package:words_app/features/home/models/root_model/root_model.dart';
 
 class AllRootsCubit extends Cubit<ApiResponseModel<List<RootModel>>> {
   final HomeController controller = serviceLocator<HomeController>();
-  AllRootsCubit() : super(ApiResponseModel(response: ResponseEnum.initial, data: []));
+  AllRootsCubit()
+    : super(ApiResponseModel(response: ResponseEnum.initial, data: []));
 
   Future fetch() async {
     final t = prt('fetch - AllRootsCubit');
     emit(state.copyWith(errorMessage: null, response: ResponseEnum.loading));
-    final ApiResponseModel<List<RootModel>> model = await controller.fetchAllRoots();
+    final ApiResponseModel<List<RootModel>> model =
+        await controller.fetchAllRoots();
     pr(model, t);
     emit(model);
   }

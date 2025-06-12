@@ -119,15 +119,19 @@ class _HomeViewActionButtonsState extends State<HomeViewActionButtons> {
                   builder: (a) {
                     FocusScope.of(context).unfocus();
                     return Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 10,
+                        vertical: 10,
+                      ),
                       child: SingleChildScrollView(
                         child: Builder(
                           builder: (context) {
                             final state = rootsController.state;
                             if (state.data?.isNotEmpty == true) {
-                              final List<WordEntity> words = WordEntity.transformRootsToWordsEntity(
-                                state.data ?? [],
-                              );
+                              final List<WordEntity> words =
+                                  WordEntity.transformRootsToWordsEntity(
+                                    state.data ?? [],
+                                  );
                               return Wrap(
                                 children: List.generate(
                                   words.length,

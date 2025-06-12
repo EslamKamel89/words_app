@@ -24,14 +24,23 @@ class HomeController {
 
       final List<RootModel> models =
           (response as List).map((json) => RootModel.fromJson(json)).toList();
-      return pr(ApiResponseModel(response: ResponseEnum.success, data: models), t);
+      return pr(
+        ApiResponseModel(response: ResponseEnum.success, data: models),
+        t,
+      );
     } catch (e) {
       String errorMessage = e.toString();
       if (e is DioException) {
         errorMessage = jsonEncode(e.response?.data ?? 'Unknown error occured');
       }
       // showSnackbar('Error', errorMessage, true);
-      return pr(ApiResponseModel(errorMessage: errorMessage, response: ResponseEnum.failed), t);
+      return pr(
+        ApiResponseModel(
+          errorMessage: errorMessage,
+          response: ResponseEnum.failed,
+        ),
+        t,
+      );
     }
   }
 
@@ -43,18 +52,30 @@ class HomeController {
 
       final List<RootModel> models =
           (response as List).map((json) => RootModel.fromJson(json)).toList();
-      return pr(ApiResponseModel(response: ResponseEnum.success, data: models), t);
+      return pr(
+        ApiResponseModel(response: ResponseEnum.success, data: models),
+        t,
+      );
     } catch (e) {
       String errorMessage = e.toString();
       if (e is DioException) {
         errorMessage = jsonEncode(e.response?.data ?? 'Unknown error occured');
       }
       // showSnackbar('Error', errorMessage, true);
-      return pr(ApiResponseModel(errorMessage: errorMessage, response: ResponseEnum.failed), t);
+      return pr(
+        ApiResponseModel(
+          errorMessage: errorMessage,
+          response: ResponseEnum.failed,
+        ),
+        t,
+      );
     }
   }
 
-  Future<ApiResponseModel<PaginationModel<WordModel>>> fetchWords(String search, int page) async {
+  Future<ApiResponseModel<PaginationModel<WordModel>>> fetchWords(
+    String search,
+    int page,
+  ) async {
     final t = prt('fetchWords - HomeController');
     try {
       final response = await api.get(
@@ -62,37 +83,62 @@ class HomeController {
         queryParameter: {'page': page},
       );
       pr(response, '$t - response');
-      PaginationModel<WordModel> pagination = PaginationModel.fromJson(response);
+      PaginationModel<WordModel> pagination = PaginationModel.fromJson(
+        response,
+      );
       final List<WordModel> models =
-          (response['data'] as List).map((json) => WordModel.fromJson(json)).toList();
+          (response['data'] as List)
+              .map((json) => WordModel.fromJson(json))
+              .toList();
       pagination.data = models;
-      return pr(ApiResponseModel(response: ResponseEnum.success, data: pagination), t);
+      return pr(
+        ApiResponseModel(response: ResponseEnum.success, data: pagination),
+        t,
+      );
     } catch (e) {
       String errorMessage = e.toString();
       if (e is DioException) {
         errorMessage = jsonEncode(e.response?.data ?? 'Unknown error occured');
       }
       // showSnackbar('Error', errorMessage, true);
-      return pr(ApiResponseModel(errorMessage: errorMessage, response: ResponseEnum.failed), t);
+      return pr(
+        ApiResponseModel(
+          errorMessage: errorMessage,
+          response: ResponseEnum.failed,
+        ),
+        t,
+      );
     }
   }
 
   Future<ApiResponseModel<List<VerseModel>>> fetchVerses(int rootId) async {
     final t = prt('fetchVerses - HomeController');
     try {
-      final response = await api.get(EndPoint.verses, queryParameter: {'rootId': rootId});
+      final response = await api.get(
+        EndPoint.verses,
+        queryParameter: {'rootId': rootId},
+      );
       pr(response, '$t - response');
 
       final List<VerseModel> models =
           (response as List).map((json) => VerseModel.fromJson(json)).toList();
-      return pr(ApiResponseModel(response: ResponseEnum.success, data: models), t);
+      return pr(
+        ApiResponseModel(response: ResponseEnum.success, data: models),
+        t,
+      );
     } catch (e) {
       String errorMessage = e.toString();
       if (e is DioException) {
         errorMessage = jsonEncode(e.response?.data ?? 'Unknown error occured');
       }
       // showSnackbar('Error', errorMessage, true);
-      return pr(ApiResponseModel(errorMessage: errorMessage, response: ResponseEnum.failed), t);
+      return pr(
+        ApiResponseModel(
+          errorMessage: errorMessage,
+          response: ResponseEnum.failed,
+        ),
+        t,
+      );
     }
   }
 }

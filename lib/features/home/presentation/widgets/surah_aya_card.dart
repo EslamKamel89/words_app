@@ -68,19 +68,24 @@ class SurahAyaCard extends StatelessWidget {
 
           // Aya Text
           Text(
-            verseText,
-            textAlign: TextAlign.right,
-            style: TextStyle(
-              // fontFamily: 'NotoSansArabic',
-              fontSize: 22,
-              height: 2.0,
-              color: Colors.brown.shade900,
-              fontWeight: FontWeight.w500,
-            ),
-            textDirection: TextDirection.rtl,
-            maxLines: 5,
-            overflow: TextOverflow.ellipsis,
-          ).animate().fadeIn(duration: 700.ms).scaleXY(begin: 0.95).then().fade(),
+                verseText,
+                textAlign: TextAlign.right,
+                style: TextStyle(
+                  // fontFamily: 'NotoSansArabic',
+                  fontSize: 22,
+                  height: 2.0,
+                  color: Colors.brown.shade900,
+                  fontWeight: FontWeight.w500,
+                ),
+                textDirection: TextDirection.rtl,
+                maxLines: 5,
+                overflow: TextOverflow.ellipsis,
+              )
+              .animate()
+              .fadeIn(duration: 700.ms)
+              .scaleXY(begin: 0.95)
+              .then()
+              .fade(),
         ],
       ),
     );

@@ -27,7 +27,10 @@ class _LoadMoreBtnState extends State<LoadMoreBtn> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<WordsIndexCubit, ApiResponseModel<PaginationModel<WordModel>>>(
+    return BlocBuilder<
+      WordsIndexCubit,
+      ApiResponseModel<PaginationModel<WordModel>>
+    >(
       builder: (context, state) {
         return wordsController.hasMorePages
             ? Align(
@@ -48,12 +51,17 @@ class _LoadMoreBtnState extends State<LoadMoreBtn> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text('تحميل المزيد من البيانات', style: TextStyle(color: Colors.white)),
+                        Text(
+                          'تحميل المزيد من البيانات',
+                          style: TextStyle(color: Colors.white),
+                        ),
                         state.response == ResponseEnum.loading
                             ? Center(
                               child: Padding(
                                 padding: EdgeInsets.only(right: 15),
-                                child: CircularProgressIndicator(color: Colors.white),
+                                child: CircularProgressIndicator(
+                                  color: Colors.white,
+                                ),
                               ),
                             )
                             : SizedBox(),

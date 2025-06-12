@@ -8,14 +8,22 @@ import 'package:words_app/features/home/models/root_model/verse.dart';
 
 class VersesIndexCubit extends Cubit<ApiResponseModel<List<VerseModel>>> {
   final HomeController controller = serviceLocator<HomeController>();
-  VersesIndexCubit() : super(ApiResponseModel(response: ResponseEnum.initial, data: []));
+  VersesIndexCubit()
+    : super(ApiResponseModel(response: ResponseEnum.initial, data: []));
   // String searchQuery = '';
   // final searchInput = TextEditingController();
   Future search(int rootId) async {
     final t = prt('search - VersesIndexCubit');
     // searchQuery = rootId;
-    emit(state.copyWith(errorMessage: null, response: ResponseEnum.loading, data: []));
-    final ApiResponseModel<List<VerseModel>> model = await controller.fetchVerses(rootId);
+    emit(
+      state.copyWith(
+        errorMessage: null,
+        response: ResponseEnum.loading,
+        data: [],
+      ),
+    );
+    final ApiResponseModel<List<VerseModel>> model = await controller
+        .fetchVerses(rootId);
     pr(model, t);
     emit(model);
   }

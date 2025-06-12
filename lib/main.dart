@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl_standalone.dart';
 import 'package:words_app/core/globals.dart';
+import 'package:words_app/core/heleprs/database_helper.dart';
 import 'package:words_app/core/router/app_router.dart';
 import 'package:words_app/core/router/app_routes_names.dart';
 import 'package:words_app/core/service_locator/service_locator.dart';
@@ -18,6 +19,7 @@ void main() async {
   await initServiceLocator();
   await findSystemLocale();
   await EasyLocalization.ensureInitialized();
+  await DataBaseHelper().initDb();
   runApp(
     EasyLocalization(
       supportedLocales: const [Locale('en'), Locale('ar')],

@@ -21,7 +21,8 @@ class _CustomBadgeState extends State<CustomBadge> {
 
   @override
   Widget build(BuildContext context) {
-    return widget.word.wordTashkeel != null && widget.word.wordTashkeel!.isNotEmpty
+    return widget.word.wordTashkeel != null &&
+            widget.word.wordTashkeel!.isNotEmpty
         ? Container(
           padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
           margin: EdgeInsets.all(5),

@@ -9,7 +9,14 @@ class VerseModel {
   List<WordModel>? words;
   SurahModel? surah;
 
-  VerseModel({this.id, this.surahId, this.verseNumber, this.text, this.words, this.surah});
+  VerseModel({
+    this.id,
+    this.surahId,
+    this.verseNumber,
+    this.text,
+    this.words,
+    this.surah,
+  });
 
   @override
   String toString() {
