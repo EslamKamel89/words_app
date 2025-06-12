@@ -3,7 +3,6 @@ import 'dart:io';
 import 'package:flutter/services.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
-import 'package:words_app/core/heleprs/print_helper.dart';
 import 'package:words_app/features/home/models/osmani_word.dart';
 
 class DataBaseHelper {
@@ -56,8 +55,8 @@ class DataBaseHelper {
   }
 
   Future<List<OsmaniWord>> getDetails2(int surahId, int verseNumber) async {
-    pr(surahId, 'verse.surahId');
-    pr(verseNumber, 'verse.verseNumber');
+    // pr(surahId, 'verse.surahId');
+    // pr(verseNumber, 'verse.verseNumber');
     String query = '''
 SELECT
     id,
