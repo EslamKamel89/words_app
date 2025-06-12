@@ -37,6 +37,9 @@ class _HomeViewState extends State<HomeView> {
       wordsController.search(rootsController.searchInput.text);
     });
     scrollController.addListener(() {
+      //    if (scrollController.position.activity?.isScrolling ?? false) {
+      //   FocusScope.of(context).unfocus();
+      // }
       focusNode.unfocus();
     });
     super.initState();
