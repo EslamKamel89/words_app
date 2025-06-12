@@ -1,16 +1,21 @@
 -- database: ./assets/dlalat_qurann.db
-SELECT
-    id,
-    ayat_id,
-    sura_id,
-    word_ar,
-    simple,
-    class_name,
-    code,
-    char_type,
-    page
-FROM
-    words
-WHERE
-    sura_id = 2
-    AND ayat_id = 129;
+-- SELECT
+--     id,
+--     ayat_id,
+--     sura_id,
+--     word_ar,
+--     simple,
+--     class_name,
+--     code,
+--     char_type,
+--     page
+-- FROM
+--     words
+-- WHERE
+--     sura_id = 2
+--     AND ayat_id = 129;
+-- UPDATE words
+-- set
+--     audio = NULL,
+--     vedio = NULL,
+--     translation = NULL;

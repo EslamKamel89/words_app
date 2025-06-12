@@ -23,6 +23,7 @@ class HomeView extends StatefulWidget {
 class _HomeViewState extends State<HomeView> {
   late final RootsIndexCubit rootsController;
   late final WordsIndexCubit wordsController;
+  final scrollController = ScrollController();
   @override
   void initState() {
     rootsController = context.read<RootsIndexCubit>();
@@ -35,7 +36,9 @@ class _HomeViewState extends State<HomeView> {
       rootsController.search(rootsController.searchInput.text);
       wordsController.search(rootsController.searchInput.text);
     });
-
+    scrollController.addListener(() {
+      focusNode.unfocus();
+    });
     super.initState();
   }
 
@@ -52,6 +55,7 @@ class _HomeViewState extends State<HomeView> {
       resizeToAvoidBottomInset: false,
       floatingActionButton: HomeViewActionButtons(),
       child: SingleChildScrollView(
+        controller: scrollController,
         child: Builder(
           builder: (context) {
             return Column(
@@ -119,19 +123,15 @@ class _HomeViewActionButtonsState extends State<HomeViewActionButtons> {
                   builder: (a) {
                     FocusScope.of(context).unfocus();
                     return Padding(
-                      padding: EdgeInsets.symmetric(
-                        horizontal: 10,
-                        vertical: 10,
-                      ),
+                      padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
                       child: SingleChildScrollView(
                         child: Builder(
                           builder: (context) {
                             final state = rootsController.state;
                             if (state.data?.isNotEmpty == true) {
-                              final List<WordEntity> words =
-                                  WordEntity.transformRootsToWordsEntity(
-                                    state.data ?? [],
-                                  );
+                              final List<WordEntity> words = WordEntity.transformRootsToWordsEntity(
+                                state.data ?? [],
+                              );
                               return Wrap(
                                 children: List.generate(
                                   words.length,
