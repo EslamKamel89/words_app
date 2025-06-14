@@ -4,6 +4,7 @@ import 'package:words_app/features/home/models/root_model/root_model.dart';
 class WordEntity {
   String? rootOrigin;
   String? rootName;
+  int? wordId;
   String? word;
   String? wordTashkeel;
   String? surahName;
@@ -17,6 +18,7 @@ class WordEntity {
     this.surahName,
     this.verseText,
     this.verseNumber,
+    this.wordId,
   });
   static List<WordEntity> transformRootToWordsEntity(RootModel root) {
     List<WordEntity> result = [];
@@ -30,6 +32,7 @@ class WordEntity {
           surahName: word.surah?.name,
           verseText: word.verse?.text,
           verseNumber: word.verse?.verseNumber,
+          wordId: word.id,
         ),
       );
     });
@@ -40,13 +43,12 @@ class WordEntity {
     List<WordEntity> result = [];
     for (var root in roots) {
       result = [...result, ...WordEntity.transformRootToWordsEntity(root)];
-      // result.addAll(
-      //   prx(
-      //     WordEntity.transformRootToWordsEntity(root),
-      //     'transformRootsToWordsEntity - result.addAll- test',
-      //   ),
-      // );
     }
     return result;
+  }
+
+  @override
+  String toString() {
+    return 'WordEntity(rootOrigin: $rootOrigin, rootName: $rootName, wordId: $wordId, word: $word, wordTashkeel: $wordTashkeel, surahName: $surahName, verseText: $verseText, verseNumber: $verseNumber)';
   }
 }

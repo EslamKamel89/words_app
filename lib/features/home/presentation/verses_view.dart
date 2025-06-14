@@ -34,11 +34,13 @@ class VersesView extends StatefulWidget {
 class _VersesViewState extends State<VersesView> {
   late final VersesIndexCubit controller;
   late final RootsIndexCubit rootsController;
+  late final WordsIndexCubit wordsController;
   WordEntity? selectedWord;
   @override
   void initState() {
     controller = context.read<VersesIndexCubit>();
     rootsController = context.read<RootsIndexCubit>();
+    wordsController = context.read<WordsIndexCubit>();
     controller.search(widget.rootId);
     super.initState();
   }
@@ -82,6 +84,10 @@ class _VersesViewState extends State<VersesView> {
                         return BlocBuilder<RootsIndexCubit, ApiResponseModel<List<RootModel>>>(
                           builder: (context, state) {
                             if (state.data?.isNotEmpty == true) {
+                              // words = getUniqueListByProperty(
+                              //   words ?? WordEntity.transformRootsToWordsEntity(state.data ?? []),
+                              //   (word) => word.wordTashkeel,
+                              // );
                               words =
                                   words ?? WordEntity.transformRootsToWordsEntity(state.data ?? []);
                               return Padding(
@@ -93,6 +99,7 @@ class _VersesViewState extends State<VersesView> {
                                       (index) => InkWell(
                                         onTap: () {
                                           if (words![index].wordTashkeel == null) return;
+                                          wordsController.wordId = words![index].wordId!;
                                           rootsController.searchInput.text =
                                               words![index].wordTashkeel!;
                                           setState(() {
