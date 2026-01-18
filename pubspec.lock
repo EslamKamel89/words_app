@@ -286,6 +286,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.4.1"
+  flutter_debouncer:
+    dependency: "direct main"
+    description:
+      name: flutter_debouncer
+      sha256: "89f98f874e6abbb212f3027a7a27d5ce42c5b6544c8f5967d91140c0ae06ae22"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.1.1"
   flutter_keyboard_visibility:
     dependency: transitive
     description:

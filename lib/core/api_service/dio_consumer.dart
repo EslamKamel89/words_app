@@ -9,7 +9,7 @@ import 'package:words_app/core/api_service/end_points.dart';
 
 class DioConsumer extends ApiConsumer {
   final Dio dio;
-
+  CancelToken? _cancelToken;
   DioConsumer({required this.dio}) {
     dio.options.baseUrl = EndPoint.baseUrl;
     dio.options.connectTimeout = const Duration(seconds: 60);
@@ -18,9 +18,7 @@ class DioConsumer extends ApiConsumer {
       // "Content-Type": "application/json",
       "Accept": "application/json",
     };
-    dio.interceptors.add(
-      DioInterceptor(),
-    ); // i use the interceptor to add the header
+    dio.interceptors.add(DioInterceptor()); // i use the interceptor to add the header
     dio.interceptors.add(
       LogInterceptor(
         request: true,
@@ -34,20 +32,20 @@ class DioConsumer extends ApiConsumer {
   }
 
   @override
-  Future get(
-    String path, {
-    Object? data,
-    Map<String, dynamic>? queryParameter,
-  }) async {
+  Future get(String path, {Object? data, Map<String, dynamic>? queryParameter}) async {
     // dio.options.headers = {"Authorization": 'Bearer ${'token'}', "Accept": "application/json"};
     try {
       if (!(await checkInternet())) {
         throw OfflineException();
       }
+      _cancelToken?.cancel("Cancelled due to new request");
+
+      _cancelToken = CancelToken();
       final response = await dio.get(
         path,
         data: data,
         queryParameters: queryParameter,
+        cancelToken: _cancelToken,
       );
       return response.data;
     } catch (e) {

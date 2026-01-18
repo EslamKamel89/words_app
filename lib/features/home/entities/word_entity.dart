@@ -4,6 +4,7 @@ import 'package:words_app/features/home/models/root_model/root_model.dart';
 class WordEntity {
   String? rootOrigin;
   String? rootName;
+  int? rootId;
   int? wordId;
   String? word;
   String? wordTashkeel;
@@ -11,6 +12,7 @@ class WordEntity {
   String? verseText;
   int? verseNumber;
   WordEntity({
+    this.rootId,
     this.rootOrigin,
     this.rootName,
     this.word,
@@ -25,6 +27,7 @@ class WordEntity {
     root.words?.forEach((word) {
       result.add(
         WordEntity(
+          rootId: root.id,
           rootOrigin: root.originWord,
           rootName: root.name,
           word: word.word,

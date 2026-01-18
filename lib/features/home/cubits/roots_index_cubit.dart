@@ -12,11 +12,23 @@ class RootsIndexCubit extends Cubit<ApiResponseModel<List<RootModel>>> {
   RootsIndexCubit() : super(ApiResponseModel(response: ResponseEnum.initial, data: []));
   String searchQuery = '';
   final searchInput = TextEditingController();
+  // List<RootModel> allRoots = [];
   Future search(String query) async {
     final t = prt('search - RootsIndexCubit');
+    // if (query.isEmpty && allRoots.isNotEmpty) {
+    //   emit(ApiResponseModel(data: allRoots, response: ResponseEnum.success));
+    //   return;
+    // }
+    if (query.isNotEmpty && searchQuery == query) {
+      return;
+    }
     searchQuery = query;
+    pr(query, '$t - query');
     emit(state.copyWith(errorMessage: null, response: ResponseEnum.loading));
     final ApiResponseModel<List<RootModel>> model = await controller.fetchRoots(query);
+    // if (allRoots.isEmpty) {
+    //   allRoots = model.data ?? [];
+    // }
     pr(model, t);
     emit(model);
   }

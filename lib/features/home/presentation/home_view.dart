@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_debouncer/flutter_debouncer.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:words_app/core/enums/response_type.dart';
 import 'package:words_app/core/extensions/context-extensions.dart';
+import 'package:words_app/core/heleprs/print_helper.dart';
+import 'package:words_app/core/router/app_routes_names.dart';
 import 'package:words_app/core/widgets/inputs.dart';
 import 'package:words_app/core/widgets/main_scaffold.dart';
 import 'package:words_app/core/widgets/sizer.dart';
@@ -23,23 +26,37 @@ class _HomeViewState extends State<HomeView> {
   late final RootsIndexCubit rootsController;
   late final WordsIndexCubit wordsController;
   final scrollController = ScrollController();
+  final Debouncer _debouncer = Debouncer();
+  // final Throttler _throttler = Throttler();
+  final Debouncer _scrollDebouncer = Debouncer();
   @override
   void initState() {
     rootsController = context.read<RootsIndexCubit>();
     wordsController = context.read<WordsIndexCubit>();
     // searchController.text = '';
     rootsController.search('');
-    wordsController.search('');
+    // wordsController.search('');
 
     rootsController.searchInput.addListener(() {
-      rootsController.search(rootsController.searchInput.text);
-      wordsController.search(rootsController.searchInput.text);
+      // _debouncer.debounce(
+      _debouncer.debounce(
+        duration: Duration(milliseconds: 1000),
+        onDebounce: () {
+          rootsController.search(rootsController.searchInput.text);
+          // wordsController.search(rootsController.searchInput.text);
+        },
+      );
     });
     scrollController.addListener(() {
       //    if (scrollController.position.activity?.isScrolling ?? false) {
       //   FocusScope.of(context).unfocus();
       // }
-      focusNode.unfocus();
+      _scrollDebouncer.debounce(
+        duration: Duration(milliseconds: 500),
+        onDebounce: () {
+          focusNode.unfocus();
+        },
+      );
     });
     super.initState();
   }
@@ -56,7 +73,7 @@ class _HomeViewState extends State<HomeView> {
     return MainScaffold(
       appBarTitle: 'كلمات في القرآن',
       resizeToAvoidBottomInset: false,
-      floatingActionButton: HomeViewActionButtons(),
+      // floatingActionButton: HomeViewActionButtons(),
       child: SingleChildScrollView(
         controller: scrollController,
         child: Builder(
@@ -68,6 +85,8 @@ class _HomeViewState extends State<HomeView> {
                   controller: rootsController.searchInput,
                 ),
                 Sizer(),
+
+                // AllRootsWidget(),
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
                   child: Builder(
@@ -78,17 +97,32 @@ class _HomeViewState extends State<HomeView> {
                           state.data ?? [],
                         );
                         return Column(
-                          children: List.generate(
-                            words.length,
-                            (index) => InkWell(
-                              onTap: () {
-                                FocusScope.of(context).unfocus();
-                                Navigator.of(context).pop();
-                                rootsController.searchInput.text = words[index].wordTashkeel ?? '';
-                              },
-                              child: CustomBadge(word: words[index]),
+                          children: [
+                            if (state.response == ResponseEnum.loading)
+                              Container(
+                                alignment: Alignment.center,
+                                margin: EdgeInsets.only(bottom: 10),
+                                child: CircularProgressIndicator(),
+                              ),
+                            ...List.generate(
+                              words.length,
+                              (index) => InkWell(
+                                onTap: () {
+                                  // FocusScope.of(context).unfocus();
+                                  // // Navigator.of(context).pop();
+                                  // rootsController.searchInput.text = words[index].wordTashkeel ?? '';
+                                  pr(words[index], 'root model');
+                                  // context.read<RootsIndexCubit>().searchInput.text =
+                                  //     widget.rootModel.name ?? '';
+                                  Navigator.of(context).pushNamed(
+                                    AppRoutesNames.versesView,
+                                    arguments: {'rootId': words[index].rootId},
+                                  );
+                                },
+                                child: CustomBadge(word: words[index]),
+                              ),
                             ),
-                          ),
+                          ],
                         );
                       }
                       if (state.response == ResponseEnum.loading) {
