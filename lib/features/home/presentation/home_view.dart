@@ -11,7 +11,6 @@ import 'package:words_app/features/home/cubits/words_index_cubit.dart';
 import 'package:words_app/features/home/entities/word_entity.dart';
 import 'package:words_app/features/home/presentation/widgets/custom_action_button.dart';
 import 'package:words_app/features/home/presentation/widgets/custom_badge.dart';
-import 'package:words_app/features/home/presentation/widgets/words_index_widget.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({super.key});
@@ -53,6 +52,7 @@ class _HomeViewState extends State<HomeView> {
 
   @override
   Widget build(BuildContext context) {
+    context.watch<RootsIndexCubit>();
     return MainScaffold(
       appBarTitle: 'كلمات في القرآن',
       resizeToAvoidBottomInset: false,
@@ -68,7 +68,38 @@ class _HomeViewState extends State<HomeView> {
                   controller: rootsController.searchInput,
                 ),
                 Sizer(),
-                WordsIndexWidget(),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                  child: Builder(
+                    builder: (context) {
+                      final state = rootsController.state;
+                      if (state.data?.isNotEmpty == true) {
+                        final List<WordEntity> words = WordEntity.transformRootsToWordsEntity(
+                          state.data ?? [],
+                        );
+                        return Wrap(
+                          children: List.generate(
+                            words.length,
+                            (index) => InkWell(
+                              onTap: () {
+                                FocusScope.of(context).unfocus();
+                                Navigator.of(context).pop();
+                                rootsController.searchInput.text = words[index].wordTashkeel ?? '';
+                              },
+                              child: CustomBadge(word: words[index]),
+                            ),
+                          ),
+                        );
+                      }
+                      if (state.response == ResponseEnum.loading) {
+                        return Center(child: CircularProgressIndicator());
+                      }
+                      // return Center(child: Column(children: [Text("لا توجد بيانات")]));
+                      return SizedBox();
+                    },
+                  ),
+                ),
+                // WordsIndexWidget(),
                 Sizer(),
                 // Divider(),
                 // Sizer(),
