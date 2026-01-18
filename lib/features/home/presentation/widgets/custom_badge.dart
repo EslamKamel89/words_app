@@ -21,11 +21,11 @@ class _CustomBadgeState extends State<CustomBadge> {
 
   @override
   Widget build(BuildContext context) {
-    return widget.word.wordTashkeel != null &&
-            widget.word.wordTashkeel!.isNotEmpty
+    return widget.word.wordTashkeel != null && widget.word.wordTashkeel!.isNotEmpty
         ? Container(
-          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-          margin: EdgeInsets.all(5),
+          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 15),
+          margin: EdgeInsets.symmetric(vertical: 5),
+          width: double.infinity,
           decoration: BoxDecoration(
             color:
                 rootsController.searchInput.text == widget.word.wordTashkeel
@@ -37,7 +37,7 @@ class _CustomBadgeState extends State<CustomBadge> {
           child: Text(
             widget.word.wordTashkeel ?? '',
             style: TextStyle(
-              fontSize: 14,
+              fontSize: 18,
               fontWeight: FontWeight.w500,
               color:
                   rootsController.searchInput.text == widget.word.wordTashkeel

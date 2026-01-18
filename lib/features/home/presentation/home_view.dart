@@ -77,7 +77,7 @@ class _HomeViewState extends State<HomeView> {
                         final List<WordEntity> words = WordEntity.transformRootsToWordsEntity(
                           state.data ?? [],
                         );
-                        return Wrap(
+                        return Column(
                           children: List.generate(
                             words.length,
                             (index) => InkWell(
