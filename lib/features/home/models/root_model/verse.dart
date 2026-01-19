@@ -5,6 +5,8 @@ class VerseModel {
   int? id;
   int? surahId;
   int? verseNumber;
+  int? wordId;
+  int? rootId;
   String? text;
   List<WordModel>? words;
   SurahModel? surah;
@@ -12,6 +14,8 @@ class VerseModel {
   VerseModel({
     this.id,
     this.surahId,
+    this.rootId,
+    this.wordId,
     this.verseNumber,
     this.text,
     this.words,
@@ -20,7 +24,7 @@ class VerseModel {
 
   @override
   String toString() {
-    return 'Verse(id: $id, surahId: $surahId, verseNumber: $verseNumber, text: $text , words: $words)';
+    return 'Verse(id: $id, surahId: $surahId, rootId: $rootId , wordId: $wordId, verseNumber: $verseNumber, text: $text , words: $words)';
   }
 
   factory VerseModel.fromJson(Map<String, dynamic> json) => VerseModel(
@@ -28,6 +32,8 @@ class VerseModel {
     surahId: json['surah_id'] as int?,
     verseNumber: json['verse_number'] as int?,
     text: json['text'] as String?,
+    rootId: json['root_id'] as int?,
+    wordId: json['word_id'] as int?,
     words:
         (json['words'] as List<dynamic>?)
             ?.map((e) => WordModel.fromJson(e as Map<String, dynamic>))

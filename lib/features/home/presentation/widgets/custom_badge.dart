@@ -5,8 +5,9 @@ import 'package:words_app/features/home/cubits/roots_index_cubit.dart';
 import 'package:words_app/features/home/entities/word_entity.dart';
 
 class CustomBadge extends StatefulWidget {
-  const CustomBadge({super.key, required this.word});
+  const CustomBadge({super.key, required this.word, required this.selected});
   final WordEntity word;
+  final bool selected;
   @override
   State<CustomBadge> createState() => _CustomBadgeState();
 }
@@ -23,26 +24,19 @@ class _CustomBadgeState extends State<CustomBadge> {
   Widget build(BuildContext context) {
     return widget.word.wordTashkeel != null && widget.word.wordTashkeel!.isNotEmpty
         ? Container(
-          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 15),
-          margin: EdgeInsets.symmetric(vertical: 5),
-          width: double.infinity,
+          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+          margin: EdgeInsets.all(5),
           decoration: BoxDecoration(
-            color:
-                rootsController.searchInput.text == widget.word.wordTashkeel
-                    ? context.primaryColor
-                    : context.primaryColor.withOpacity(0.05),
+            color: widget.selected ? context.primaryColor : context.primaryColor.withOpacity(0.05),
             borderRadius: BorderRadius.circular(16),
             border: Border.all(color: context.primaryColor),
           ),
           child: Text(
             widget.word.wordTashkeel ?? '',
             style: TextStyle(
-              fontSize: 18,
+              fontSize: 14,
               fontWeight: FontWeight.w500,
-              color:
-                  rootsController.searchInput.text == widget.word.wordTashkeel
-                      ? Colors.white
-                      : context.primaryColor,
+              color: widget.selected ? Colors.white : context.primaryColor,
             ),
           ),
         )

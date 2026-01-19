@@ -10,9 +10,9 @@ import 'package:words_app/core/widgets/sizer.dart';
 import 'package:words_app/features/home/cubits/roots_index_cubit.dart';
 import 'package:words_app/features/home/cubits/words_index_cubit.dart';
 import 'package:words_app/features/home/entities/word_entity.dart';
+import 'package:words_app/features/home/presentation/widgets/all_roots_widget.dart';
 import 'package:words_app/features/home/presentation/widgets/custom_action_button.dart';
 import 'package:words_app/features/home/presentation/widgets/custom_badge.dart';
-import 'package:words_app/features/home/presentation/widgets/words_index_widget.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({super.key});
@@ -84,8 +84,6 @@ class _HomeViewState extends State<HomeView> {
                   controller: rootsController.searchInput,
                 ),
                 Sizer(),
-
-                // AllRootsWidget(),
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
                   child: Builder(
@@ -104,25 +102,6 @@ class _HomeViewState extends State<HomeView> {
                                 child: CircularProgressIndicator(),
                               ),
                             AllRootsWidget(),
-
-                            // ...List.generate(
-                            //   words.length,
-                            //   (index) => InkWell(
-                            //     onTap: () {
-                            //       // FocusScope.of(context).unfocus();
-                            //       // // Navigator.of(context).pop();
-                            //       // rootsController.searchInput.text = words[index].wordTashkeel ?? '';
-                            //       pr(words[index], 'root model');
-                            //       // context.read<RootsIndexCubit>().searchInput.text =
-                            //       //     widget.rootModel.name ?? '';
-                            //       Navigator.of(context).pushNamed(
-                            //         AppRoutesNames.versesView,
-                            //         arguments: {'rootId': words[index].rootId},
-                            //       );
-                            //     },
-                            //     child: CustomBadge(word: words[index]),
-                            //   ),
-                            // ),
                           ],
                         );
                       }
@@ -211,7 +190,7 @@ class _HomeViewActionButtonsState extends State<HomeViewActionButtons> {
                                       rootsController.searchInput.text =
                                           words[index].wordTashkeel ?? '';
                                     },
-                                    child: CustomBadge(word: words[index]),
+                                    child: CustomBadge(word: words[index], selected: false),
                                   ),
                                 ),
                               );
