@@ -4,7 +4,6 @@ import 'package:material_design_icons_flutter/material_design_icons_flutter.dart
 import 'package:words_app/core/enums/response_type.dart';
 import 'package:words_app/core/extensions/context-extensions.dart';
 import 'package:words_app/core/heleprs/hide_keyboard.dart';
-import 'package:words_app/core/heleprs/print_helper.dart';
 import 'package:words_app/core/heleprs/unique_object_in_array.dart';
 import 'package:words_app/core/models/api_response_model.dart';
 import 'package:words_app/core/widgets/inputs.dart';
@@ -179,14 +178,7 @@ class _VersesViewState extends State<VersesView> {
                   );
                   verses = getUniqueListByProperty(state.data ?? [], (verse) => verse.text);
                   if (selectedWord != null) {
-                    verses =
-                        verses
-                            .where(
-                              (v) =>
-                                  pr(v.wordId, 'v.wordId') ==
-                                  pr(selectedWord?.wordId, 'selectedWord?.wordId'),
-                            )
-                            .toList();
+                    verses = verses.where((v) => v.wordId == selectedWord?.wordId).toList();
                   }
                   return Column(
                     children: List.generate(verses.length, (index) {
