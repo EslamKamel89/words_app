@@ -85,7 +85,7 @@ class _HomeViewState extends State<HomeView> {
                 ),
                 Sizer(),
                 Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                  padding: EdgeInsets.symmetric(vertical: 10),
                   child: Builder(
                     builder: (context) {
                       final state = rootsController.state;
