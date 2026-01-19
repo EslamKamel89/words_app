@@ -6,6 +6,7 @@ import 'package:words_app/core/api_service/api_consumer.dart';
 import 'package:words_app/core/api_service/api_interceptors.dart';
 import 'package:words_app/core/api_service/check_internet.dart';
 import 'package:words_app/core/api_service/end_points.dart';
+import 'package:words_app/core/heleprs/print_helper.dart';
 
 class DioConsumer extends ApiConsumer {
   final Dio dio;
@@ -38,9 +39,15 @@ class DioConsumer extends ApiConsumer {
       if (!(await checkInternet())) {
         throw OfflineException();
       }
+      pr(path, 'debug path');
+      pr(path.contains('/api/roots'), 'debug path');
       _cancelToken?.cancel("Cancelled due to new request");
 
-      _cancelToken = CancelToken();
+      if (path.contains('/api/roots')) {
+        _cancelToken = CancelToken();
+      } else {
+        _cancelToken = null;
+      }
       final response = await dio.get(
         path,
         data: data,

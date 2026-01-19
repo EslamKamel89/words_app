@@ -4,8 +4,6 @@ import 'package:flutter_debouncer/flutter_debouncer.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:words_app/core/enums/response_type.dart';
 import 'package:words_app/core/extensions/context-extensions.dart';
-import 'package:words_app/core/heleprs/print_helper.dart';
-import 'package:words_app/core/router/app_routes_names.dart';
 import 'package:words_app/core/widgets/inputs.dart';
 import 'package:words_app/core/widgets/main_scaffold.dart';
 import 'package:words_app/core/widgets/sizer.dart';
@@ -14,6 +12,7 @@ import 'package:words_app/features/home/cubits/words_index_cubit.dart';
 import 'package:words_app/features/home/entities/word_entity.dart';
 import 'package:words_app/features/home/presentation/widgets/custom_action_button.dart';
 import 'package:words_app/features/home/presentation/widgets/custom_badge.dart';
+import 'package:words_app/features/home/presentation/widgets/words_index_widget.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({super.key});
@@ -104,24 +103,26 @@ class _HomeViewState extends State<HomeView> {
                                 margin: EdgeInsets.only(bottom: 10),
                                 child: CircularProgressIndicator(),
                               ),
-                            ...List.generate(
-                              words.length,
-                              (index) => InkWell(
-                                onTap: () {
-                                  // FocusScope.of(context).unfocus();
-                                  // // Navigator.of(context).pop();
-                                  // rootsController.searchInput.text = words[index].wordTashkeel ?? '';
-                                  pr(words[index], 'root model');
-                                  // context.read<RootsIndexCubit>().searchInput.text =
-                                  //     widget.rootModel.name ?? '';
-                                  Navigator.of(context).pushNamed(
-                                    AppRoutesNames.versesView,
-                                    arguments: {'rootId': words[index].rootId},
-                                  );
-                                },
-                                child: CustomBadge(word: words[index]),
-                              ),
-                            ),
+                            AllRootsWidget(),
+
+                            // ...List.generate(
+                            //   words.length,
+                            //   (index) => InkWell(
+                            //     onTap: () {
+                            //       // FocusScope.of(context).unfocus();
+                            //       // // Navigator.of(context).pop();
+                            //       // rootsController.searchInput.text = words[index].wordTashkeel ?? '';
+                            //       pr(words[index], 'root model');
+                            //       // context.read<RootsIndexCubit>().searchInput.text =
+                            //       //     widget.rootModel.name ?? '';
+                            //       Navigator.of(context).pushNamed(
+                            //         AppRoutesNames.versesView,
+                            //         arguments: {'rootId': words[index].rootId},
+                            //       );
+                            //     },
+                            //     child: CustomBadge(word: words[index]),
+                            //   ),
+                            // ),
                           ],
                         );
                       }
