@@ -178,7 +178,8 @@ class _VersesViewState extends State<VersesView> {
                   );
                   verses = getUniqueListByProperty(state.data ?? [], (verse) => verse.text);
                   if (selectedWord != null) {
-                    verses = verses.where((v) => v.wordId == selectedWord?.wordId).toList();
+                    verses =
+                        verses.where((v) => v.wordTashkeel == selectedWord?.wordTashkeel).toList();
                   }
                   return Column(
                     children: List.generate(verses.length, (index) {
